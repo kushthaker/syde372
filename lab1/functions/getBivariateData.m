@@ -1,6 +1,6 @@
-% Use randn function to generate values
+% Use randn function to generate non-negative integers
 % Inputs are n, mu, covar
-% Outputs m x 2 vector of sample data
+% Outputs m x 2 vector of gaussian distributed sample data
 % 
 % Kush Thaker - 20517901
 % Callum Mitchell 
