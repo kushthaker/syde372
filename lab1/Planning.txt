@@ -1,0 +1,57 @@
+Requirements: perform and plot a set of classifiers on two sets of 2D sample data:
+one classifying between 2 classes, and one between 3
+
+Classifiers:
+
+MED (case 1 done)
+GED 
+NN
+k-NN
+MAP
+
+Required information about sample data:
+
+- sample data (done)
+- discrete grid (done - meshgrid)
+- mean (done)
+- covariance matrix (done)
+- euclidean distance of each point from class mean (done)
+- fast generalized euclidean distance function
+- std deviation
+- unit stddev contours 
+- number of standard deviations from mean
+- weight matrix
+- weighted mean/standard deviation + stddev contours 
+- eigenvalues/eigenvectors (done)
+- euclidian distance from sample point 
+
+
+MED logic: done
+
+GED logic:
+- get classes, means, covariance matrices
+- build weight matrix for each class
+- find weighted distance discriminant functions
+- Perform MED classifier logic
+--Note: dw(x,z)=[(x-z)'W'W(x-z)]^(1/2) (note: ' = transform)
+
+NN logic:
+- get classes, position of each data point
+- get mesh grid
+- For each point in grid:
+--- Find distance to all other sample points in a class, and keep in a sorted list
+--- Take smallest (nearest) of these distances
+--- Repeat for each class
+--- Compare distances to nearest neighbor in each class, and use to classify each grid point
+
+k-NN logic:
+- get classes, position of each data point
+- get mesh grid
+- For each point in grid:
+--- Find distance to all other sample points in a class, and keep in a sorted list
+--- Take kth-smallest (nearest) of these distances
+--- Repeat for each class
+--- Compare these distances for each class, take smallest, and use to classify each grid point
+
+MAP logic:
+(TBD)
