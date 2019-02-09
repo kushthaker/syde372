@@ -1,11 +1,12 @@
+% Lab 1 main.m script
+% Feb 12 2019
+%
 % Use randn function to generate non-negative integers
 % Inputs are n, mu, covar
 % Outputs m x 2 vector of gaussian distributed sample data
 % 
 % Kush Thaker - 20517901
 % Callum Mitchell 
-%
-% Febuary 12 2017
 
 function [z] = getBivariateData(n, mu, covar)
     R = chol(covar);
