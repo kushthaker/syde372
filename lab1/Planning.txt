@@ -5,9 +5,9 @@ Classifiers:
 
 MED (case 1 done)
 GED 
-NN
-k-NN
-MAP
+NN (case 1 done)
+k-NN (case 1 done)
+MAP (case 1 done)
 
 Required information about sample data:
 
@@ -16,8 +16,7 @@ Required information about sample data:
 - mean (done)
 - covariance matrix (done)
 - euclidean distance of each point from class mean (done)
-- fast generalized euclidean distance function
-- std deviation
+- std deviation (get from covariance matrix)
 - unit stddev contours 
 - number of standard deviations from mean
 - weight matrix
@@ -35,7 +34,7 @@ GED logic:
 - Perform MED classifier logic
 --Note: dw(x,z)=[(x-z)'W'W(x-z)]^(1/2) (note: ' = transform)
 
-NN logic:
+NN logic: (done)
 - get classes, position of each data point
 - get mesh grid
 - For each point in grid:
@@ -44,7 +43,7 @@ NN logic:
 --- Repeat for each class
 --- Compare distances to nearest neighbor in each class, and use to classify each grid point
 
-k-NN logic:
+k-NN logic: (done)
 - get classes, position of each data point
 - get mesh grid
 - For each point in grid:
@@ -53,7 +52,7 @@ k-NN logic:
 --- Repeat for each class
 --- Compare these distances for each class, take smallest, and use to classify each grid point
 
-MAP logic:
+MAP logic: (done)
 - define Q terms
 - calculate MAP formula for each i,j point
 

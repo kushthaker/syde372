@@ -29,6 +29,7 @@ y = min([samples_a(:,2);samples_b(:,2)])-1:dx:max([samples_a(:,2);samples_b(:,2)
 
 [X1, Y1] = meshgrid(x,y); % Creates 2 arrays of equal-size as grid for sample data.
 
+
 % Case 2
 x = min([samples_c(:,1);samples_d(:,1);samples_e(:,1)])-1:dx:max([samples_c(:,1);samples_d(:,1);samples_e(:,1)])+1;
 y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2);samples_d(:,2);samples_e(:,2)])+1;
@@ -37,6 +38,8 @@ y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2)
 
 get_MED;
 get_MAP;
+NN_ab = KNN(samples_a, samples_b, X1, Y1, 1);
+KNN_ab = KNN(samples_a, samples_b, X1, Y1, 5);
 
 %% Plot Decision Boundaries
 
@@ -50,6 +53,13 @@ contour(X1,Y1,MED_Case1, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
 % Plot MAP boundary
 contour(X1,Y1,MAP_Case1, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
+
+% Plot NN boundary
+contour(X1,Y1,NN_ab, [0, 0], 'Color', 'red', 'LineWidth', LINE_WIDTH);
+
+% Plot K-NN boundary for k=5
+contour(X1,Y1,KNN_ab, [0, 0], 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
+
 
 % Plot sample data
 scatter_a = scatter(samples_a(:,1), samples_a(:,2), 'bo');

@@ -9,7 +9,7 @@ function [dist] = MED(mean_1, mean_2, X, Y)
     get_dist = @(point, mean) sqrt((point-mean) * (point-mean)'); 
     for i=1:size(X,1)
         for j=1:size(Y,2)
-            point = [X(i,j) Y(i,j)]; 
+            point = [X(i) Y(j)]; 
             dist(i,j) = get_dist(point, mean_1) - get_dist(point, mean_2);
         end
     end
