@@ -1,9 +1,8 @@
-% Provided sample data
-%
+% Lab 1 Sample Date
+% Feb 12 2019
+% 
 % Kush Thaker - 20517901
 % Callum Mitchell - 20608435
-%
-% Febuary 12 2017
 
 % Case 1
 
