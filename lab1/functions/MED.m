@@ -3,8 +3,6 @@
 % 
 % Kush Thaker - 20517901
 % Callum Mitchell - 20608435
-%
-% Febuary 12 2017
 
 function [dist] = MED(mean_1, mean_2, X, Y)
     dist = zeros(size(X)); % distance matrix of size meshgrid(x,y)  
