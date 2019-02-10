@@ -27,7 +27,7 @@ for i=1:size(X2,1)
             MED_Case2(i,j) = c;
         elseif MED_cd(i,j) > 0 && MED_de(i,j) < 0 
             MED_Case2(i,j) = d;
-        elseif MED_ce(i,j) > 0 && MED_de(i,j) > 0
+        elseif MED_ce(i,j) < 0 && MED_de(i,j) < 0
             MED_Case2(i,j) = e;
         end
     end

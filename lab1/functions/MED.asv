@@ -8,8 +8,8 @@ function [dist] = MED(mean_1, mean_2, X, Y)
     dist = zeros(size(X)); % distance matrix of size meshgrid(x,y)  
     for i=1:size(X,1)
         for j=1:size(Y,2)
-            point = [X(i,j) Y(i,j)]; 
-            dist(i,j) = sqrt((point(1)-mean_1(1))^2+(point(2)-mean_1(2))^2) - sqrt((point(1)-mean_2(1))^2+(point(2)-mean_2(2))^2);
+            point = [X(i,) Y(j)]; 
+            dist(i,j) = get_dist(point, mean_1) - get_dist(point, mean_2);
         end
     end
 end
