@@ -7,19 +7,16 @@
 % Febuary 12 2017
 
 function [kNearestDist] = KNearestNeighbour(samples, X, Y, K)
-    kNearestDist  = zeros(size(X,2), size(Y,2));
-    for i = 1:size(X,2)
+    kNearestDist  = zeros(size(X,1), size(Y,2));
+    for i = 1:size(X,1)
         for j = 1:size(Y,2)
             euclideanDistSet = zeros(size(samples,1), 1); % sorted vector of distances
-            get_dist = @(point, mean) sqrt((point-mean) * (point-mean)'); 
             % Compute euclidean distance between current sample point and
             % each other class point
             for k=1:size(samples)
                 %Add new sample point distance
-                samples(k,1);
-                samples(k,2);
-                point = [X(i) Y(j)]; 
-                euclideanDistSet(k) = abs(get_dist(point, samples(k,1)) - get_dist(point, samples(k,2)));
+                point = [X(i,j) Y(i,j)]; 
+                euclideanDistSet(k) = abs(sqrt((point(1) - samples(k,1))^2 + (point(2) - samples(k,2))^2));
                 if k > 1
                     % Swap until distances are sorted from smallest to largest
                     l = k;

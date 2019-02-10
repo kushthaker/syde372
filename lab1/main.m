@@ -30,7 +30,8 @@ y = min([samples_a(:,2);samples_b(:,2)])-1:dx:max([samples_a(:,2);samples_b(:,2)
 
 MED_ab = MED(mean_a, mean_b, X1, Y1);
 MAP_ab = MAP(n_a, n_b, mean_a, mean_b, covar_a, covar_b, X1, Y1);
-
+NN_ab = KNN(samples_a, samples_b, X1, Y1, 1);
+KNN_ab = KNN(samples_a, samples_b, X1, Y1, 5);
 
 %% Plot Decision Boundaries
 
@@ -42,8 +43,15 @@ hold on;
 % Plot MED boundary
 contour(X1,Y1,MED_ab, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
-% Plot MED boundary
+% Plot MAP boundary
 contour(X1,Y1,MAP_ab, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
+
+% Plot NN boundary
+contour(X1,Y1,NN_ab, [0, 0], 'Color', 'red', 'LineWidth', LINE_WIDTH);
+
+% Plot K-NN boundary for k=5
+contour(X1,Y1,KNN_ab, [0, 0], 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
+
 
 % Plot sample data
 scatter_a = scatter(samples_a(:,1), samples_a(:,2), 'bo');
