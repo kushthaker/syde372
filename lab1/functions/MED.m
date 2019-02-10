@@ -1,7 +1,7 @@
 % Compute dist matrix sample data
 %
 % Kush Thaker - 20517901
-% Callum Mitchell - 206
+% Callum Mitchell - 20608435
 %
 % Febuary 12 2017
 
