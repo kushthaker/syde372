@@ -55,3 +55,14 @@ k-NN logic:
 
 MAP logic:
 (TBD)
+
+
+
+
+
+
+Soft deadlines:
+- Finish and verify code by end of Saturday, Feb 9th
+- Finish report by end of Sunday, Feb 10th
+
+Hard deadline: Tuesday, Feb 12th, 11:59pm

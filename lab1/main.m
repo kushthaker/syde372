@@ -2,7 +2,7 @@
 % Feb 12 2019
 % 
 % Kush Thaker - 20517901
-% Callum Mitchell - 206XXXXX
+% Callum Mitchell - 20608435
 
 clear all 
 close all
