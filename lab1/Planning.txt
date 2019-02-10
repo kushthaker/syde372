@@ -54,12 +54,8 @@ k-NN logic:
 --- Compare these distances for each class, take smallest, and use to classify each grid point
 
 MAP logic:
-(TBD)
-
-
-
-
-
+- define Q terms
+- calculate MAP formula for each i,j point
 
 Soft deadlines:
 - Finish and verify code by end of Saturday, Feb 9th

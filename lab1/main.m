@@ -26,6 +26,7 @@ y = min([samples_a(:,2);samples_b(:,2)])-1:dx:max([samples_a(:,2);samples_b(:,2)
 [X1, Y1] = meshgrid(x,y); % Creates 2 arrays of equal-size as grid for sample data.
 
 MED_ab = MED(mean_a, mean_b, X1, Y1);
+MAP_ab = MAP(n_a, n_b, mean_a, mean_b, covar_a, covar_b, X1, Y1);
 
 
 %% Plot Decision Boundaries
@@ -37,6 +38,9 @@ hold on;
 
 % Plot MED boundary
 contour(X1,Y1,MED_ab, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
+
+% Plot MED boundary
+contour(X1,Y1,MAP_ab, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
 
 % Plot sample data
 scatter_a = scatter(samples_a(:,1), samples_a(:,2), 'bo');
