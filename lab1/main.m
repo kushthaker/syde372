@@ -23,14 +23,20 @@ samples_e = getBivariateData(n_e, mean_e, covar_e);
 
 dx = 0.2; % The lower this is the smoother the contours.
 
+% Case 1
 x = min([samples_a(:,1);samples_b(:,1)])-1:dx:max([samples_a(:,1);samples_b(:,1)])+1;
 y = min([samples_a(:,2);samples_b(:,2)])-1:dx:max([samples_a(:,2);samples_b(:,2)])+1;
 
 [X1, Y1] = meshgrid(x,y); % Creates 2 arrays of equal-size as grid for sample data.
 
-MED_ab = MED(mean_a, mean_b, X1, Y1);
-MAP_ab = MAP(n_a, n_b, mean_a, mean_b, covar_a, covar_b, X1, Y1);
+% Case 2
+x = min([samples_c(:,1);samples_d(:,1);samples_e(:,1)])-1:dx:max([samples_c(:,1);samples_d(:,1);samples_e(:,1)])+1;
+y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2);samples_d(:,2);samples_e(:,2)])+1;
 
+[X2, Y2] = meshgrid(x,y);
+
+get_MED;
+get_MAP;
 
 %% Plot Decision Boundaries
 
@@ -40,10 +46,10 @@ figure(1);
 hold on; 
 
 % Plot MED boundary
-contour(X1,Y1,MED_ab, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
+contour(X1,Y1,MED_Case1, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
-% Plot MED boundary
-contour(X1,Y1,MAP_ab, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
+% Plot MAP boundary
+contour(X1,Y1,MAP_Case1, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
 
 % Plot sample data
 scatter_a = scatter(samples_a(:,1), samples_a(:,2), 'bo');
@@ -57,6 +63,9 @@ hold off;
 
 figure(2);
 hold on; 
+
+% Plot MED boundary
+contour(X2,Y2,MED_Case2, 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
 % Plot sample data
 scatter_c = scatter(samples_c(:,1), samples_c(:,2), 'b^', 'filled');
