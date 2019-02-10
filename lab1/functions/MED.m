@@ -1,4 +1,4 @@
-% Lab 1 compute MED boundary
+% Lab 1 MED algorithm
 % Feb 12 2019
 % 
 % Kush Thaker - 20517901
