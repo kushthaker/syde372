@@ -3,8 +3,6 @@
 %
 % Kush Thaker - 20517901
 % Callum Mitchell - 20608435
-%
-% Febuary 12 2017
 
 function [kNearestDist] = KNearestNeighbour(samples, X, Y, K)
     kNearestDist  = zeros(size(X,1), size(Y,2));
