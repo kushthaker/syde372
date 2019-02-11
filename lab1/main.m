@@ -37,6 +37,7 @@ y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2)
 [X2, Y2] = meshgrid(x,y);
 
 get_MED;
+get_GED;
 get_NN;
 get_KNN;
 get_MAP;
@@ -52,6 +53,9 @@ hold on;
 
 % Plot MED boundary
 contour(X1,Y1,MED_Case1, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
+
+% Plot GED boundary
+contour(X1,Y1,GED_Case1, [0, 0], 'Color', 'green', 'LineWidth', LINE_WIDTH);
 
 % Plot MAP boundary
 contour(X1,Y1,MAP_Case1, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
@@ -78,6 +82,9 @@ hold on;
 
 % Plot MED boundary
 contour(X2,Y2,MED_Case2, 'Color', 'black', 'LineWidth', LINE_WIDTH);
+
+% Plot GED boundary
+contour(X2,Y2,GED_Case2, 'Color', 'green', 'LineWidth', LINE_WIDTH);
 
 % Plot NN boundary
 contour(X2,Y2,NN_Case2, 'Color', 'red', 'LineWidth', LINE_WIDTH);
