@@ -37,6 +37,8 @@ y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2)
 [X2, Y2] = meshgrid(x,y);
 
 get_MED;
+get_NN;
+get_KNN;
 get_MAP;
 NN_ab = KNN(samples_a, samples_b, X1, Y1, 1);
 KNN_ab = KNN(samples_a, samples_b, X1, Y1, 5);
@@ -76,6 +78,15 @@ hold on;
 
 % Plot MED boundary
 contour(X2,Y2,MED_Case2, 'Color', 'black', 'LineWidth', LINE_WIDTH);
+
+% Plot NN boundary
+contour(X2,Y2,NN_Case2, 'Color', 'red', 'LineWidth', LINE_WIDTH);
+
+% Plot K-NN boundary for k=5
+contour(X2,Y2,KNN_Case2, 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
+
+% Plot MAP boundary
+%contour(X2,Y2,MED_Case2, 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
 % Plot sample data
 scatter_c = scatter(samples_c(:,1), samples_c(:,2), 'b^', 'filled');
