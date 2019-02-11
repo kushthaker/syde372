@@ -51,6 +51,14 @@ LINE_WIDTH = 3;
 figure(1);
 hold on; 
 
+% Plot sample data
+scatter_a = scatter(samples_a(:,1), samples_a(:,2), 'bo');
+scatter_b = scatter(samples_b(:,1), samples_b(:,2), 'rx');
+
+% Plot means
+plot(mean_a(1), mean_a(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
+plot(mean_b(1), mean_b(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
+
 % Plot MED boundary
 contour(X1,Y1,MED_Case1, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
@@ -66,19 +74,20 @@ contour(X1,Y1,NN_ab, [0, 0], 'Color', 'red', 'LineWidth', LINE_WIDTH);
 % Plot K-NN boundary for k=5
 contour(X1,Y1,KNN_ab, [0, 0], 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
 
-
-% Plot sample data
-scatter_a = scatter(samples_a(:,1), samples_a(:,2), 'bo');
-scatter_b = scatter(samples_b(:,1), samples_b(:,2), 'rx');
-
-% Plot means
-plot(mean_a(1), mean_a(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
-plot(mean_b(1), mean_b(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
-
 hold off;
 
 figure(2);
 hold on; 
+
+% Plot sample data
+scatter_c = scatter(samples_c(:,1), samples_c(:,2), 'b^', 'filled');
+scatter_d = scatter(samples_d(:,1), samples_d(:,2), 'rx');
+scatter_e = scatter(samples_e(:,1), samples_e(:,2), 'go', 'filled');
+
+% Plot means
+plot(mean_c(1), mean_c(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
+plot(mean_d(1), mean_d(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
+plot(mean_e(1), mean_e(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
 
 % Plot MED boundary
 contour(X2,Y2,MED_Case2, 'Color', 'black', 'LineWidth', LINE_WIDTH);
@@ -93,16 +102,6 @@ contour(X2,Y2,NN_Case2, 'Color', 'red', 'LineWidth', LINE_WIDTH);
 contour(X2,Y2,KNN_Case2, 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
 
 % Plot MAP boundary
-%contour(X2,Y2,MED_Case2, 'Color', 'black', 'LineWidth', LINE_WIDTH);
-
-% Plot sample data
-scatter_c = scatter(samples_c(:,1), samples_c(:,2), 'b^', 'filled');
-scatter_d = scatter(samples_d(:,1), samples_d(:,2), 'rx');
-scatter_e = scatter(samples_e(:,1), samples_e(:,2), 'go', 'filled');
-
-% Plot means
-plot(mean_c(1), mean_c(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
-plot(mean_d(1), mean_d(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
-plot(mean_e(1), mean_e(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
+contour(X2,Y2,MAP_Case2, 'Color', 'blue', 'LineWidth', LINE_WIDTH);
 
 hold off;
