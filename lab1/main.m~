@@ -74,12 +74,9 @@ contour(X1,Y1,MAP_Case1, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
 % Plot K-NN boundary for k=5
 % contour(X1,Y1,KNN_ab, [0, 0], 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
 
-% Plot Unit Standard Deviation Contours
+% Plot Unit Standard Deviation Contour
 theta_a = atan(e_vecs_a(2,2)/e_vecs_a(2,1));
-plot_ellipse(mean_a(1),mean_a(2),theta_a,sqrt(e_vals_a(2,2)),sqrt(e_vals_a(1,1)));
-
-theta_b = atan(e_vecs_b(2,2)/e_vecs_b(2,1));
-plot_ellipse(mean_b(1),mean_b(2),theta_b,sqrt(e_vals_b(2,2)),sqrt(e_vals_b(1,1)));
+plot_ellipse(mean_a(1),mean_a(2),theta_a,sqrt(e_vals_a(2,2)),sqrt(e_vals_a(1,1)))
 
 hold off;
 
@@ -110,15 +107,5 @@ contour(X2,Y2,GED_Case2, 'Color', 'red', 'LineWidth', LINE_WIDTH);
 
 % Plot MAP boundary
 contour(X2,Y2,MAP_Case2, 'Color', 'blue', 'LineWidth', LINE_WIDTH);
-
-% Plot Unit Standard Deviation Contours
-theta_c = atan(e_vecs_c(2,2)/e_vecs_c(2,1));
-plot_ellipse(mean_c(1),mean_c(2),theta_c,sqrt(e_vals_c(2,2)),sqrt(e_vals_c(1,1)));
-
-theta_d = atan(e_vecs_d(2,2)/e_vecs_d(2,1));
-plot_ellipse(mean_d(1),mean_d(2),theta_d,sqrt(e_vals_d(2,2)),sqrt(e_vals_d(1,1)));
-
-theta_e = atan(e_vecs_e(2,2)/e_vecs_e(2,1));
-plot_ellipse(mean_e(1),mean_e(2),theta_e,sqrt(e_vals_e(2,2)),sqrt(e_vals_e(1,1)));
 
 hold off;
