@@ -10,7 +10,6 @@ NN_Case1 = KNN(samples_a, samples_b, X1, Y1, 1);
 % Case 2
 % get NNs bw 3 classes, write class 1,2,3 or 0 to dist
 
-
 NN_cd = KNN(samples_c, samples_d, X2, Y2, 1);
 NN_ce = KNN(samples_c, samples_e, X2, Y2, 1);
 NN_de = KNN(samples_d, samples_e, X2, Y2, 1);
