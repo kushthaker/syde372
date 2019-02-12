@@ -19,14 +19,6 @@ samples_c = getBivariateData(n_c, mean_c, covar_c);
 samples_d = getBivariateData(n_d, mean_d, covar_d);
 samples_e = getBivariateData(n_e, mean_e, covar_e);
 
-%% Load 2nd set of Sample Data for error calculation
-
-samples_a_2nd = getBivariateData(n_a, mean_a, covar_a);
-samples_b_2nd = getBivariateData(n_b, mean_b, covar_b);
-samples_c_2nd = getBivariateData(n_c, mean_c, covar_c);
-samples_d_2nd = getBivariateData(n_d, mean_d, covar_d);
-samples_e_2nd = getBivariateData(n_e, mean_e, covar_e);
-
 %% Compute Classifiers
 
 dx = 0.2; % The lower this is the smoother the contours.
@@ -42,6 +34,19 @@ x = min([samples_c(:,1);samples_d(:,1);samples_e(:,1)])-1:dx:max([samples_c(:,1)
 y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2);samples_d(:,2);samples_e(:,2)])+1;
 
 [X2, Y2] = meshgrid(x,y);
+
+% Create second set of samples to use for error analysis
+% Case 1
+x = min([samples_a(:,1);samples_b(:,1)])-1:dx:max([samples_a(:,1);samples_b(:,1)])+1;
+y = min([samples_a(:,2);samples_b(:,2)])-1:dx:max([samples_a(:,2);samples_b(:,2)])+1;
+
+[X1_SecondSet, Y1_SecondSet] = meshgrid(x,y); % Creates 2 arrays of equal-size as grid for sample data.
+
+% Case 2
+x = min([samples_c(:,1);samples_d(:,1);samples_e(:,1)])-1:dx:max([samples_c(:,1);samples_d(:,1);samples_e(:,1)])+1;
+y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2);samples_d(:,2);samples_e(:,2)])+1;
+
+[X2_SecondSet, Y2_SecondSet] = meshgrid(x,y);
 
 get_MED;
 get_GED;
