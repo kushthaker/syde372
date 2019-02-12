@@ -38,15 +38,15 @@ y = min([samples_c(:,2);samples_d(:,2);samples_e(:,2)])-1:dx:max([samples_c(:,2)
 
 get_MED;
 get_GED;
-get_NN;
-get_KNN;
+% get_NN;
+% get_KNN;
 get_MAP;
-NN_ab = KNN(samples_a, samples_b, X1, Y1, 1);
-KNN_ab = KNN(samples_a, samples_b, X1, Y1, 5);
+% NN_ab = KNN(samples_a, samples_b, X1, Y1, 1);
+% KNN_ab = KNN(samples_a, samples_b, X1, Y1, 5);
 
 %% Plot Decision Boundaries
 
-LINE_WIDTH = 3;
+LINE_WIDTH = 2;
 
 figure(1);
 hold on; 
@@ -63,16 +63,23 @@ plot(mean_b(1), mean_b(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
 contour(X1,Y1,MED_Case1, [0, 0], 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
 % Plot GED boundary
-contour(X1,Y1,GED_Case1, [0, 0], 'Color', 'green', 'LineWidth', LINE_WIDTH);
+contour(X1,Y1,GED_Case1, [0, 0], 'Color', 'red', 'LineWidth', LINE_WIDTH);
 
 % Plot MAP boundary
 contour(X1,Y1,MAP_Case1, [0, 0], 'Color', 'blue', 'LineWidth', LINE_WIDTH);
 
 % Plot NN boundary
-contour(X1,Y1,NN_ab, [0, 0], 'Color', 'red', 'LineWidth', LINE_WIDTH);
+% contour(X1,Y1,NN_ab, [0, 0], 'Color', 'red', 'LineWidth', LINE_WIDTH);
 
 % Plot K-NN boundary for k=5
-contour(X1,Y1,KNN_ab, [0, 0], 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
+% contour(X1,Y1,KNN_ab, [0, 0], 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
+
+% Plot Unit Standard Deviation Contours
+theta_a = atan(e_vecs_a(2,2)/e_vecs_a(2,1));
+plot_ellipse(mean_a(1),mean_a(2),theta_a,sqrt(e_vals_a(2,2)),sqrt(e_vals_a(1,1)));
+
+theta_b = atan(e_vecs_b(2,2)/e_vecs_b(2,1));
+plot_ellipse(mean_b(1),mean_b(2),theta_b,sqrt(e_vals_b(2,2)),sqrt(e_vals_b(1,1)));
 
 hold off;
 
@@ -93,15 +100,25 @@ plot(mean_e(1), mean_e(2), 'ks', 'MarkerSize',10, 'MarkerFaceColor',[0 0 0]);
 contour(X2,Y2,MED_Case2, 'Color', 'black', 'LineWidth', LINE_WIDTH);
 
 % Plot GED boundary
-contour(X2,Y2,GED_Case2, 'Color', 'green', 'LineWidth', LINE_WIDTH);
+contour(X2,Y2,GED_Case2, 'Color', 'red', 'LineWidth', LINE_WIDTH);
 
 % Plot NN boundary
-contour(X2,Y2,NN_Case2, 'Color', 'red', 'LineWidth', LINE_WIDTH);
+% contour(X2,Y2,NN_Case2, 'Color', 'red', 'LineWidth', LINE_WIDTH);
 
 % Plot K-NN boundary for k=5
-contour(X2,Y2,KNN_Case2, 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
+% contour(X2,Y2,KNN_Case2, 'Color', 'yellow', 'LineWidth', LINE_WIDTH);
 
 % Plot MAP boundary
 contour(X2,Y2,MAP_Case2, 'Color', 'blue', 'LineWidth', LINE_WIDTH);
+
+% Plot Unit Standard Deviation Contours
+theta_c = atan(e_vecs_c(2,2)/e_vecs_c(2,1));
+plot_ellipse(mean_c(1),mean_c(2),theta_c,sqrt(e_vals_c(2,2)),sqrt(e_vals_c(1,1)));
+
+theta_d = atan(e_vecs_d(2,2)/e_vecs_d(2,1));
+plot_ellipse(mean_d(1),mean_d(2),theta_d,sqrt(e_vals_d(2,2)),sqrt(e_vals_d(1,1)));
+
+theta_e = atan(e_vecs_e(2,2)/e_vecs_e(2,1));
+plot_ellipse(mean_e(1),mean_e(2),theta_e,sqrt(e_vals_e(2,2)),sqrt(e_vals_e(1,1)));
 
 hold off;
