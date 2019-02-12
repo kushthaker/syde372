@@ -1,0 +1,28 @@
+% Lab 1 MED error 
+% Feb 12 2019
+% 
+% Kush Thaker - 20517901
+% Callum Mitchell - 20608435
+[A_ClassifyA, B_ClassifyA] = get_error(n_a, MED(mean_a, mean_b, samples_a), @(d) d < 0);
+[A_ClassifyB, B_ClassifyB] = get_error(n_b, MED(mean_a, mean_b, samples_b), @(d) d > 0);
+
+MED_conf_matrix_ab = [
+    [A_ClassifyA, B_ClassifyA];
+    [A_ClassifyB, B_ClassifyB];
+];
+
+[C_ClassifyC, D_ClassifyC, E_ClassifyC] = get_error_cde(n_c, MED(mean_c, mean_d, samples_c), MED(mean_c, mean_e, samples_c), MED(mean_d, mean_e, samples_c), @(d) d < 0);
+
+disp('Confusion matrix for MED Case 1: A & B:');
+disp(MED_conf_matrix_ab);
+
+P_error_MED_case_1 = (FA + FB)/(n_a + n_b)
+
+[A_ClassifyA, B_ClassifyA] = get_error(n_a, MED(mean_a, mean_b, samples_a), @(d) d < 0);
+
+MED_conf_matrix_cde = [
+    [C_ClassifyC, D_ClassifyC, E_ClassifyC];
+    [C_ClassifyD, D_ClassifyD, E_ClassifyD];
+    [C_ClassifyE, D_ClassifyE, E_ClassifyE];
+];
+
