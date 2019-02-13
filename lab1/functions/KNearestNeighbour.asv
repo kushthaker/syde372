@@ -41,13 +41,7 @@ function [kNearestDist] = KNearestNeighbour(samples, X, Y, K)
                 K = 1
             end
             % Return k-nearest neighbor's euclidean distance
-            kPointSum = [0,0];
-            for k = 1:K
-                kPointSum(1) = kPointSum(1) + samples(sampleIDSet(k),1);
-                kPointSum(2) = kPointSum(2) + samples(sampleIDSet(k),2);
-            end
-            kPointMean = [kPointSum(1)/K, kPointSum(2)/K];
-            kNearestDist(i, j) = abs(sqrt((point(1) - kPointMean(1))^2 + (point(2) - kPointMean(2))^2));
+            kNearestDist(i, j) = sum(sqrt((point(1) - samples(sampleIDSet(1:K),1))^2 + (point(2) - samples(k,2))^2));
             kNearestDist(i,j);
             % Those above lines are WRONG! We take the sample mean of the k
             % nearest points!
