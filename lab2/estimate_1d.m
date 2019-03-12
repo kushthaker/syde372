@@ -67,3 +67,30 @@ hold on;
 plot(p);
 plot(p_est);
 hold off;
+
+%% Uniform Estimate
+% parametric, assume uniform
+
+% for class a, plot p_est (uni) and true p (norm)
+x = 0:0.01:max(a)+1;
+[a_est, b_est] = ml_uniform(a);
+p = normpdf(x,mean,stdev);
+p_est = unifpdf(x,a_est,b_est);
+
+figure(5);
+hold on;
+plot(p);
+plot(p_est);
+hold off;
+
+% for class b, plot p_est (uni) and true p (exp)
+x = [0:0.01:max(b)+1];
+[a_est, b_est] = ml_uniform(b);
+p = exppdf(x,1/exp_rate);
+p_est = unifpdf(x,a_est,b_est);
+
+figure(6);
+hold on;
+plot(p);
+plot(p_est);
+hold off;
