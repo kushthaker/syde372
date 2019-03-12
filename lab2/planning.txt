@@ -1,0 +1,25 @@
+Breakdown of lab:
+
+2 - model estimation 1-d for a,b
+
+	parametric, assume normal
+	for class a, plot p_est (norm) and true p (norm)
+	for class b, plot p_est (norm) and true p (exp)
+
+	parametric, assume exp
+	for class a, plot p_est (exp) and true p (norm)
+	for class b, plot p_est (exp) and true p (exp)
+
+	parametric, assume uniform
+	for class a, plot p_est (uni) and true p (norm)
+	for class b, plot p_est (uni) and true p (exp)
+
+	non-parametric, parzen method
+	for class a, stdev 0.1, plot p_est and true p (norm)
+	for class a, stdev 0.4, plot p_est and true p (norm)
+	for class b, stdev 0.1, plot p_est and true p (exp)
+	for class b, stdev 0.4, plot p_est and true p (exp)
+
+
+
+
