@@ -20,6 +20,8 @@ Breakdown of lab:
 	for class b, stdev 0.1, plot p_est and true p (exp)
 	for class b, stdev 0.4, plot p_est and true p (exp)
 
+3 - model estimation 2-d
+
 
 
 
