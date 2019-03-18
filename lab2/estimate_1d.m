@@ -94,3 +94,32 @@ hold on;
 plot(p);
 plot(p_est);
 hold off;
+
+%% Non-parametric Estimate
+% Parzen window normal func 
+
+% for class a, plot p_hat (std 0.1, std 0.4) and true p (norm)
+x = [0:0.01:max(a)+1];
+p_hat1 = parzen_1d(a,x,0.1);
+p_hat4 = parzen_1d(a,x,0.4);
+p = normpdf(x,mean,stdev);
+
+figure(7);
+hold on;
+plot(p);
+plot(p_hat1);
+plot(p_hat4);
+hold off;
+
+% for class b, plot p_hat (std 0.1, 0.4) and true p (norm)
+x = [0:0.01:max(b)+1];
+p_hat1 = parzen_1d(b,x,0.1);
+p_hat4 = parzen_1d(b,x,0.4);
+p = exppdf(x,1/exp_rate);
+
+figure(8);
+hold on;
+plot(p);
+plot(p_hat1);
+plot(p_hat4);
+hold off;
