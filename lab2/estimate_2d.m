@@ -10,57 +10,79 @@ load('lab2_2.mat')
 
 %% True Params
 
-mean = [5, 5];
-stdev = [20, 20];
+%TODO: calculate mean and stddev from data itself
+parzen_variance = 400;
 exp_rate = 1;
 
 %% Gaussian Estimate (2D)
 % parametric, assume normal
 
 % for class a, plot p_est (norm) and true p (norm)
-x_a = 0:0.01:max(al(1), al(2))+1;
-y_a = 0:0.01:max(al(1), al(2))+1;
-[mean_e, stdev_e] = ml_normal(al);
-p = mvnpdf([x_a.',y_a.'],mean,stdev);
-p_est = mvnpdf([x_a.',y_a.'],mean_e,stdev_e);
+x_a = -100:1:500;
+y_a = -100:1:500;
+[mean_e, covar_e] = ml_normal_2d(al); 
 
-%TODO: instead of trying to plot all this, show ML classifier boundaries
+[X1,X2] = meshgrid(x_a, y_a);
+X = [X1(:) X2(:)];
+p_est = mvnpdf(X, mean_e,covar_e);
+p_est = reshape(p_est, length(x_a), length(y_a));
+
+%TODO: show ML classifier boundaries along with data points on a 2D plot
 hold on;
 figure(1);
-plot(p);
 plot(p_est);
 hold off;
 
 % for class b, plot p_est (norm) and true p (exp)
-x_b = 0:0.01:max(bl(1), bl(2))+1;
-y_b = 0:0.01:max(bl(1), bl(2))+1;
-[mean_e, stdev_e] = ml_normal(bl);
-p = mvnpdf([x_b.',y_b.'],mean,stdev);
-p_est = mvnpdf([x_b.',y_b.'],mean_e,stdev_e);
+x_b = -100:1:500;
+y_b = -100:1:500;
+[mean_e, covar_e] = ml_normal_2d(bl);
+
+[X1,X2] = meshgrid(x_b, y_b);
+X = [X1(:) X2(:)];
+p_est = mvnpdf(X, mean_e,covar_e);
+p_est = reshape(p_est, length(x_b), length(y_b));
+
 figure(2);
 hold on;
-plot(p);
+
 plot(p_est);
 hold off;
 
 % for class c, plot p_est (norm) and true p (exp)
-x_c = 0:0.01:max(cl(1), cl(2))+1;
-y_c = 0:0.01:max(cl(1), cl(2))+1;
-[mean_e, stdev_e] = ml_normal(cl);
-p = mvnpdf([x_c.',y_c.'],mean,stdev);
-p_est = mvnpdf([x_c.',y_c.'],mean_e,stdev_e);
+x_c = -100:1:500;
+y_c = -100:1:500;
+[mean_e, covar_e] = ml_normal_2d(cl);
+
+[X1,X2] = meshgrid(x_c, y_c);
+X = [X1(:) X2(:)];
+
+p_est = mvnpdf(X, mean_e,covar_e);
+p_est = reshape(p_est, length(x_c), length(y_c));
+
 figure(3);
 hold on;
-plot(p);
 plot(p_est);
 hold off;
 
 
 %% Non-parametric Estimate
 % Parzen window normal func 
+% Window is 2D gaussian with variance of 400 on both axes
+
+x_pzn = -100:1:100;
+y_pzn = -100:1:100;
+mean_pzn = [0, 0];
+covar_pzn = [400,0 ; 0,400];
+
+[X1,X2] = meshgrid(x_pzn, y_pzn);
+X = [X1(:) X2(:)];
+win_pzn = mvnpdf(X, mean_pzn,covar_pzn);
+win_pzn = reshape(win_pzn, length(x_pzn), length(y_pzn));
+
 
 % for class a, plot p_hat (std 20) and true p (norm)
-[p_hat_a, x, y] = parzen_2d(al, 1, 20);
+[p_hat_a, x, y] = parzen_2d(al, 1, win_pzn);
 data = zeros(2, max(length(x), length(y)));
 for i=1:length(x)
     data(1,i) = x(i);
@@ -68,16 +90,14 @@ end
 for i=1:length(y)
     data(2,i) = y(i);
 end
-p = mvnpdf(data.',mean,stdev);
 
 figure(4);
 hold on;
-plot(p);
 plot(p_hat_a);
 hold off;
 
-% for class b, plot p_hat (std 0.1, 0.4) and true p (norm)
-[p_hat_b, x, y] = parzen_2d(bl, 1, 20);
+% for class b, plot p_hat (std 20) and true p (norm)
+[p_hat_b, x, y] = parzen_2d(bl, 1, win_pzn);
 data = zeros(2, max(length(x), length(y)));
 for i=1:length(x)
     data(1,i) = x(i);
@@ -85,16 +105,15 @@ end
 for i=1:length(y)
     data(2,i) = y(i);
 end
-p = normpdf(data.',mean,stdev);
+%p = mvnpdf(data.',mean,stddev);
 
 figure(5);
 hold on;
-plot(p);
 plot(p_hat_b);
 hold off;
 
-% for class c, plot p_hat (std 0.1, 0.4) and true p (norm)
-[p_hat_c, x, y] = parzen_2d(cl, 1, 20);
+% for class c, plot p_hat (std 20) and true p (norm)
+[p_hat_c, x, y] = parzen_2d(cl, 1, win_pzn);
 data = zeros(2, max(length(x), length(y)));
 for i=1:length(x)
     data(1,i) = x(i);
@@ -102,10 +121,9 @@ end
 for i=1:length(y)
     data(2,i) = y(i);
 end
-p = mvnpdf(data.',mean,stdev);
+%p = mvnpdf(data.',mean,stddev);
 
 figure(6);
 hold on;
-plot(p);
 plot(p_hat_c);
 hold off;

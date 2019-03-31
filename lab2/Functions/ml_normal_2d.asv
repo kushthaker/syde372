@@ -1,0 +1,16 @@
+% SYDE 372 Lab 2 
+% Kush Thaker - 20517901
+% Callum Mitchell - 20608435
+
+function [mean, covar] = ml_normal_2d(samples)
+
+N = length(samples(1));
+mean(1) = 1/N*sum(samples(1));
+mean(2) = 1/N*sum(samples(2));
+for i = 1:N
+    covar = covar + samples(i)*transpose(samples);
+end
+covar = (covar * 1/N) - mean*transpose(mean);
+end
+
+

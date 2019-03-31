@@ -2,12 +2,16 @@
 % Kush Thaker - 20517901
 % Callum Mitchell - 20608435
 
-function [mean, stdev] = ml_normal_2d(samples)
+function [mean, covar] = ml_normal_2d(samples)
 
 N = length(samples);
 mean = 1/N*sum(samples);
-stdev = 1/N*sum(power(samples - mean,2));
-
+covar = zeros(2,2);
+for i = 1:N
+    point = [samples(i,1) - mean(1), samples(i,2) - mean(2)];
+    covar = covar + transpose(point)*point;
+end
+covar = (covar * 1/N);
 end
 
 
