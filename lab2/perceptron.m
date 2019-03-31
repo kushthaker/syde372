@@ -43,13 +43,13 @@ n_ba = ones(J,1); % true b predicted false a
 tries_count = ones(J,1);
 
 for j=1:J
-%     disp('j = ')
-%     disp(j)
-%     
-%     length(a)
-%     length(b)
+    disp('j = ')
+    disp(j)
     
     while (n_ab(j) > 0 && n_ba(j) > 0 && tries_count(j) <= limit)
+        
+        disp('tries count = ')
+        disp(tries_count(j))
         
         % Steps 1-3 get MED based on 2 random points
         mean_a = a(randi(length(a),1),:);
@@ -71,12 +71,10 @@ for j=1:J
             end
         end
         
-%         disp('tries:')
-%         tries_count(j)
         tries_count(j) = tries_count(j) + 1; 
-        
         discriminant_list(j, tries_count(j),:,:) = discriminant;
-    end
+        
+     end
     
      % if 0 false b predictions then remove true b points
      if (n_ab(j) == 0)
@@ -87,9 +85,6 @@ for j=1:J
      if (n_ba(j) == 0)
         a = a(interp2(X1,Y1,discriminant,a(:,1),a(:,2)) > 0,:);
      end
-     
-%      length(a)
-%      length(b)
 end
 
 avg_error = zeros(1,J);
