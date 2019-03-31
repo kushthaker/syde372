@@ -18,51 +18,51 @@ exp_rate = 1;
 % parametric, assume normal
 
 % for class a, plot p_est (norm) and true p (norm)
-x_a = 0:2:500;
-y_a = 0:2:500;
+x_a = -100:1:500;
+y_a = -100:1:500;
 [mean_e, covar_e] = ml_normal_2d(al); 
 
 [X1,X2] = meshgrid(x_a, y_a);
 X = [X1(:) X2(:)];
-p_est = mvnpdf(X, mean_e,covar_e);
-p_est = reshape(p_est, length(x_a), length(y_a));
+p_hat_a_gauss = mvnpdf(X, mean_e,covar_e);
+p_hat_a_gauss = reshape(p_hat_a_gauss, length(x_a), length(y_a));
 
 %TODO: show ML classifier boundaries along with data points on a 2D plot
 hold on;
 figure(1);
-plot(p_est);
+plot(p_hat_a_gauss);
 hold off;
 
 % for class b, plot p_est (norm) and true p (exp)
-x_b = 0:2:500;
-y_b = 0:2:500;
+x_b = -100:1:500;
+y_b = -100:1:500;
 [mean_e, covar_e] = ml_normal_2d(bl);
 
 [X1,X2] = meshgrid(x_b, y_b);
 X = [X1(:) X2(:)];
-p_est = mvnpdf(X, mean_e,covar_e);
-p_est = reshape(p_est, length(x_b), length(y_b));
+p_hat_b_gauss = mvnpdf(X, mean_e,covar_e);
+p_hat_b_gauss = reshape(p_hat_b_gauss, length(x_b), length(y_b));
 
 figure(2);
 hold on;
 
-plot(p_est);
+plot(p_hat_b_gauss);
 hold off;
 
 % for class c, plot p_est (norm) and true p (exp)
-x_c = 0:2:500;
-y_c = 0:2:500;
+x_c = -100:1:500;
+y_c = -100:1:500;
 [mean_e, covar_e] = ml_normal_2d(cl);
 
 [X1,X2] = meshgrid(x_c, y_c);
 X = [X1(:) X2(:)];
 
-p_est = mvnpdf(X, mean_e,covar_e);
-p_est = reshape(p_est, length(x_c), length(y_c));
+p_hat_c_gauss = mvnpdf(X, mean_e,covar_e);
+p_hat_c_gauss = reshape(p_hat_c_gauss, length(x_c), length(y_c));
 
 figure(3);
 hold on;
-plot(p_est);
+plot(p_hat_c_gauss);
 hold off;
 
 
@@ -70,17 +70,19 @@ hold off;
 % Parzen window normal func 
 % Window is 2D gaussian with variance of 400 on both axes
 
-mean_parzen = [0, 0];
-covar_parzen = [400,0 ; 0,400];
+x_pzn = -100:1:100;
+y_pzn = -100:1:100;
+mean_pzn = [0, 0];
+covar_pzn = [400,0 ; 0,400];
 
-[X1,X2] = meshgrid(x_b, y_b);
+[X1,X2] = meshgrid(x_pzn, y_pzn);
 X = [X1(:) X2(:)];
-p_est = mvnpdf(X, mean_e,covar_e);
-p_est = reshape(p_est, length(x_b), length(y_b));
+win_pzn = mvnpdf(X, mean_pzn,covar_pzn);
+win_pzn = reshape(win_pzn, length(x_pzn), length(y_pzn));
 
 
 % for class a, plot p_hat (std 20) and true p (norm)
-[p_hat_a, x, y] = parzen_2d(al, 1, covar_e);
+[p_hat_a_parzen, x, y] = parzen_2d(al, 1, win_pzn);
 data = zeros(2, max(length(x), length(y)));
 for i=1:length(x)
     data(1,i) = x(i);
@@ -88,15 +90,14 @@ end
 for i=1:length(y)
     data(2,i) = y(i);
 end
-%p = mvnpdf(data.',mean,stddev);
 
 figure(4);
 hold on;
-surf(p_hat_a);
+plot(p_hat_a_parzen);
 hold off;
 
 % for class b, plot p_hat (std 20) and true p (norm)
-[p_hat_b, x, y] = parzen_2d(bl, 1);
+[p_hat_b_parzen, x, y] = parzen_2d(bl, 1, win_pzn);
 data = zeros(2, max(length(x), length(y)));
 for i=1:length(x)
     data(1,i) = x(i);
@@ -108,11 +109,11 @@ end
 
 figure(5);
 hold on;
-surf(p_hat_b);
+plot(p_hat_b_parzen);
 hold off;
 
 % for class c, plot p_hat (std 20) and true p (norm)
-[p_hat_c, x, y] = parzen_2d(cl, 1);
+[p_hat_c_parzen, x, y] = parzen_2d(cl, 1, win_pzn);
 data = zeros(2, max(length(x), length(y)));
 for i=1:length(x)
     data(1,i) = x(i);
@@ -124,5 +125,35 @@ end
 
 figure(6);
 hold on;
-surf(p_hat_c);
+plot(p_hat_c_parzen);
 hold off;
+
+%% ML decision boundary and data scatter plots
+
+get_ML;
+LINE_WIDTH = 2;
+
+figure(3);
+hold on; 
+
+% Plot testing sample data
+scatter_a = scatter(at(:,1), at(:,2), 'k^', 'filled');
+scatter_b = scatter(bt(:,1), bt(:,2), 'bx');
+scatter_c = scatter(ct(:,1), ct(:,2), 'ro', 'filled');
+
+%calculate ML boundary based on discretized Gaussian and Parzen pdf values
+%of each class
+for i=1:size(X1,1)
+    for j=1:size(X2,2)
+        if p_hat_a_gauss(i,j) < p_hat_b_gauss && p_hat_a_gauss < p_hat_c_gauss
+            ML_Case2(i,j) = a;
+        elseif p_hat_b_gauss(i,j) < p_hat_a_gauss && p_hat_b_gauss < p_hat_c_gauss
+            ML_Case2(i,j) = b;
+        elseif p_hat_c_gauss(i,j) < p_hat_a_gauss && p_hat_c_gauss < p_hat_b_gauss
+            ML_Case2(i,j) = c;
+        end
+    end
+end
+
+% Plot ML boundary
+[~,ML_cde_boundary] = contour(X1,X2,ML_Case2, 'Color', 'm', 'LineWidth', LINE_WIDTH);
