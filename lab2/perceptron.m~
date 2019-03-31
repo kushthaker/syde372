@@ -13,8 +13,7 @@ load('lab2_3.mat')
 J = 5;
 limit = 20;
 step = 1;
-samples_a = a;
-samples_b = b;
+a
 
 %% Visualize Data
 
@@ -97,22 +96,24 @@ min_error = zeros(1,J);
 max_error = zeros(1,J);
 std_error = zeros(1,J);
 misclassified = zeros(J,limit);
-test_a = zeros(1, length(samples_a));
-test_b = zeros(1, length(samples_b));
-total_points = length(samples_a) + length(samples_b);
+test_a = zeros(1, length(a));
+test_b = zeros(1, length(b));
+total_points = length(a) + length(b);
+
+a = 
 
 for j=1:J
     for k=1:tries_count(j)
-        for i=1:length(samples_a)
+        for i=1:length(a)
             discriminant = squeeze(discriminant_list(j,k,:,:));
             
             % true A
-            if test_a(i) == 0 && interp2(X1,Y1,discriminant,samples_a(i,1),samples_a(i,2)) < 0 && n_ba(j) == 0
+            if test_a(i) == 0 && interp2(X1,Y1,discriminant,a(i,1),a(i,2)) < 0 && n_ba(j) == 0
                 test_a(i) = 1;
             end
             
             % true B
-            if test_b(i) == 0 && interp2(X1,Y1,discriminant,samples_b(i,1),samples_b(i,2)) < 0 && n_ab(j) == 0
+            if test_b(i) == 0 && interp2(X1,Y1,discriminant,b(i,1),b(i,2)) < 0 && n_ab(j) == 0
                 test_b(i) = 1;
             end  
         end
@@ -122,23 +123,6 @@ for j=1:J
     avg_error(j) = sum(misclassified(j,1:tries_count(j)))/tries_count(j)/total_points;
     min_error(j) = min(misclassified(j,1:tries_count(j)))/total_points;
     max_error(j) = max(misclassified(j,1:tries_count(j)))/total_points;
-    std_error(j) = std(misclassified(j,1:tries_count(j)));
+    std_error(j) = std(misclassified(j,1:tries_count(j)))/total_points;
+
 end
-
-%% Plots
-
-figure(1);
-hold on;
-subplot(4,1,1);
-plot(1:J, avg_error, '-','linewidth',2,'markersize',3);
-title('Average Error');
-subplot(4,1,2);
-plot(1:J, min_error, '-','linewidth',2,'markersize',3);
-title('Minimum Error');
-subplot(4,1,3);
-plot(1:J, max_error, '-','linewidth',2,'markersize',3);
-title('Maximum Error');
-subplot(4,1,4);
-plot(1:J, std_error, '-','linewidth',2,'markersize',3);
-title('Standard Deviation of Errors');
-hold off;
