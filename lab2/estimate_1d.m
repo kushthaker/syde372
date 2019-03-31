@@ -27,6 +27,8 @@ hold on;
 figure(1);
 plot(p);
 plot(p_est);
+title('Parametric - Gaussian Estimate of A');
+legend([plot(p), plot(p_est)], {'True P', 'Estimated P'}, 'Location', 'northeast');
 hold off;
 
 % for class b, plot p_est (norm) and true p (exp)
@@ -39,6 +41,8 @@ figure(2);
 hold on;
 plot(p);
 plot(p_est);
+title('Parametric - Gaussian Estimate of B');
+legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
 %% Exponential Estimate
@@ -54,6 +58,8 @@ figure(3);
 hold on;
 plot(p);
 plot(p_est);
+title('Parametric - Exponential Estimate of A');
+legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
 % for class b, plot p_est (exp) and true p (exp)
@@ -66,6 +72,8 @@ figure(4);
 hold on;
 plot(p);
 plot(p_est);
+title('Parametric - Exponential Estimate of B');
+legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
 %% Uniform Estimate
@@ -81,6 +89,8 @@ figure(5);
 hold on;
 plot(p);
 plot(p_est);
+title('Parametric - Uniform Estimate of A');
+legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
 % for class b, plot p_est (uni) and true p (exp)
@@ -93,6 +103,8 @@ figure(6);
 hold on;
 plot(p);
 plot(p_est);
+title('Parametric - Uniform Estimate of B');
+legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
 %% Non-parametric Estimate
@@ -109,6 +121,8 @@ hold on;
 plot(p);
 plot(p_hat1);
 plot(p_hat4);
+title('Non-Parametric - Parzen Window Estimate of A');
+legend([plot(p), plot(p_hat1), plot(p_hat4)], {'True', 'Estimated StDev=0.1','Estimated StDev=0.4'}, 'Location', 'northeast');
 hold off;
 
 % for class b, plot p_hat (std 0.1, 0.4) and true p (norm)
@@ -122,4 +136,7 @@ hold on;
 plot(p);
 plot(p_hat1);
 plot(p_hat4);
+title('Non-Parametric - Parzen Window Estimate of B');
+legend([plot(p), plot(p_hat1), plot(p_hat4)], {'True', 'Estimated StDev=0.1','Estimated StDev=0.4'}, 'Location', 'northeast');
+
 hold off;
