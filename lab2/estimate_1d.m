@@ -28,6 +28,8 @@ figure(1);
 plot(p);
 plot(p_est);
 title('Parametric - Gaussian Estimate of A');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability') 
 legend([plot(p), plot(p_est)], {'True P', 'Estimated P'}, 'Location', 'northeast');
 hold off;
 
@@ -42,6 +44,8 @@ hold on;
 plot(p);
 plot(p_est);
 title('Parametric - Gaussian Estimate of B');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability')
 legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
@@ -59,6 +63,8 @@ hold on;
 plot(p);
 plot(p_est);
 title('Parametric - Exponential Estimate of A');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability')
 legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
@@ -73,6 +79,8 @@ hold on;
 plot(p);
 plot(p_est);
 title('Parametric - Exponential Estimate of B');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability')
 legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
@@ -90,6 +98,8 @@ hold on;
 plot(p);
 plot(p_est);
 title('Parametric - Uniform Estimate of A');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability')
 legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
@@ -104,6 +114,8 @@ hold on;
 plot(p);
 plot(p_est);
 title('Parametric - Uniform Estimate of B');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability')
 legend([plot(p), plot(p_est)], {'True', 'Estimated'}, 'Location', 'northeast');
 hold off;
 
@@ -122,6 +134,8 @@ plot(p);
 plot(p_hat1);
 plot(p_hat4);
 title('Non-Parametric - Parzen Window Estimate of A');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability')
 legend([plot(p), plot(p_hat1), plot(p_hat4)], {'True', 'Estimated StDev=0.1','Estimated StDev=0.4'}, 'Location', 'northeast');
 hold off;
 
@@ -137,6 +151,8 @@ plot(p);
 plot(p_hat1);
 plot(p_hat4);
 title('Non-Parametric - Parzen Window Estimate of B');
+xlabel('Samples (Step Size 0.01)') 
+ylabel('Probability')
 legend([plot(p), plot(p_hat1), plot(p_hat4)], {'True', 'Estimated StDev=0.1','Estimated StDev=0.4'}, 'Location', 'northeast');
 
 hold off;
